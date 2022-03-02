@@ -260,17 +260,9 @@ namespace Testing {
 
 class Test {
 
-	void testFailed(const char* name, Testing::ExpectationException* e) {
-		failedTestCount++;
-		if (e && printFailedTests) {
-			std::cout << "Failed test '" << name << "': ";
-			e->print(std::cout);
-		}
-	}
+	void testFailed(const char* name, Testing::ExpectationException* e);
+	void testSucceeded();
 
-	void testSucceeded() {
-
-	}
 public:
 	template<typename T>
 	Test& test(const char* name, const T& testFunction) {
@@ -303,19 +295,9 @@ public:
 		return OwnPtr<Testing::ExpectedValue<T>>(new Testing::ExpectedValue<T>(val));
 	}
 
-	void printSummary(std::ostream& o) const {
-		if (failedTestCount) {
-			o << "[FAILURES] ";
-		}
-		else {
-			o << "[SUCCESS ] ";
-		}
-		o << (testCount - failedTestCount) << '/' << testCount << " tests passed. (" << failedTestCount << " tests failed)\n";
-	}
+	void printSummary(std::ostream& o) const;
 
-	void mute(bool v = true) {
-		printFailedTests = !v;
-	}
+	void mute(bool v = true) { printFailedTests = !v; }
 
 private:
 	u64 testCount{ 0 };
