@@ -96,7 +96,7 @@ might not correlate to the number of code points represented by them. Therefore
 the length needs to be calculated with an O(n) (linear) time operation. This is
 as much avoided as possible and will only be done on demand when the length is
 actually queried. Moreover known length values are as much reused and propagated
-during copying and appending.
+during copying and appending as possible to keep overhead low.
 
 ## Quirks ⚡
 The distinguishing features of the library come with a few quirks to keep in mind:
